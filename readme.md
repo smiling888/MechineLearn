@@ -10,3 +10,6 @@ log
 数据集地址：
 UCI机器学习仓库（http://archive.ics.uci.edu/ml/datasets.html）中有大量的免费数据
 
+
+## sk文档
+ [cross_val_score函数，通过指定scoring参数来选择使用的不同评估矩阵。scoring的参数参考链接](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter)
