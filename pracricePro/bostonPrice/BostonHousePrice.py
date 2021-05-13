@@ -25,7 +25,7 @@ from sklearn.ensemble import AdaBoostRegressor
 from sklearn.metrics import mean_squared_error
 
 # 导入数据
-filename = 'housing.csv'
+filename = '../../dataset/housing.csv'
 names = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS',
          'RAD', 'TAX', 'PRTATIO', 'B', 'LSTAT', 'MEDV']
 dataset = read_csv(filename, names=names, delim_whitespace=True)
@@ -46,7 +46,11 @@ print(dataset.describe())
 
 # 关联关系-有些特征属性之间具有强关联关系（>0.7或<-0.7）
 set_option('precision', 2)
+# pearson：Pearson相关系数来衡量两个数据集合是否在一条线上面，即针对线性数据的相关系数计算，针对非线性                                           数据便会有误差。
 print(dataset.corr(method='pearson'))
+
+# 数据的分类分布-类似 sqlgorupby
+print(dataset.groupby("age").size())
 
 # 直方图
 dataset.hist(sharex=False, sharey=False, xlabelsize=1, ylabelsize=1)
