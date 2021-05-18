@@ -1,6 +1,7 @@
 # 波士顿房价
 # 导入类库
 import numpy as np
+import seaborn as sns
 from numpy import arange
 from matplotlib import pyplot
 from pandas import read_csv
@@ -23,6 +24,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 
 # 导入数据
 filename = '../../dataset/housing.csv'
@@ -68,6 +70,10 @@ pyplot.show()
 scatter_matrix(dataset)
 pyplot.show()
 
+#绘制数据的线性回归模型图
+sns.regplot(dataset["RM"],prices)
+pyplot.show()
+
 # 相关矩阵图
 fig = pyplot.figure()
 ax = fig.add_subplot(111)
@@ -102,6 +108,7 @@ models['KNN'] = KNeighborsRegressor()
 models['CART'] = DecisionTreeRegressor()
 models['SVM'] = SVR()
 # 评估算法
+# cross_val_score 使用交叉验证法 验证算法的预测性能，可以在一定程度上减小过拟合
 results = []
 for key in models:
     kfold = KFold(n_splits=num_folds, random_state=seed)
@@ -208,3 +215,11 @@ gbr.fit(X=rescaledX, y=Y_train)
 rescaledX_validation = scaler.transform(X_validation)
 predictions = gbr.predict(rescaledX_validation)
 print(mean_squared_error(Y_validation, predictions))
+
+
+
+# 其他
+## 通过r2——score拟合优度的程度值 R2值越接近1表明拟合的程度越高；反之，R2值越小，则说明回归直线的拟合程度越低。
+def performance_metric(y_true,y_predict):
+    score=r2_score(y_true,y_predict)
+    return score

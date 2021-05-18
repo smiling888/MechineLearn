@@ -3,7 +3,7 @@ from sklearn.model_selection import ShuffleSplit
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression
 # 导入数据
-filename = 'pima_data.csv'
+filename = '../../dataset/pima_data.csv'
 names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
 data = read_csv(filename, names=names)
 # 将数据分为输入数据和输出结果
